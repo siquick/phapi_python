@@ -1,7 +1,11 @@
 Python library for the Performance Horizon API.
 --
+
+### Requirements & Depedencies
+
 You'll need to create a `config.py` file following the template in `config_template.py`. You will need the `requests` library installed. 
 
+Payloads and descriptions of API methods available at https://docs.performancehorizon.apiary.io/#
 
 ### Syntax and example
 
