@@ -4,10 +4,10 @@ You'll need to create a `config.py` file following the template in `config_templ
 
 --
 
-Example
+### Syntax and example
 
 
-###Usecase - I am an advertiser and want to see a list of all my campaigns
+##### I am an advertiser and want to see a list of all my campaigns
 
 ```python
 advertiser_client = Advertiser(advertiser_application_key,advertiser_user_api_key)   
