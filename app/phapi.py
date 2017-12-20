@@ -24,11 +24,30 @@ def api_call_post(application_key,user_api_key,endpoint,payload):
 		return r
 	except Exception as e:
 		return str(e)
-	
+
+def api_call_post_no_auth(endpoint,payload):
+	headers = {}
+	print headers
+	print payload
+	try:
+		r = requests.post(endpoint,headers=headers,data=payload)
+		return r
+	except Exception as e:
+		return str(e)
 
 def api_call_get(application_key,user_api_key,endpoint,payload):
 	auth_credentials = encode_auth(application_key,user_api_key)
 	headers = {'Authorization': 'Basic ' + auth_credentials}
+	print headers
+	print payload
+	try:
+		r = requests.get(endpoint,headers=headers,data=payload)
+		return r
+	except Exception as e:
+		return str(e)
+
+def api_call_get_no_auth(endpoint,payload):
+	headers = {}
 	print headers
 	print payload
 	try:
@@ -46,6 +65,18 @@ def api_call_put(application_key,user_api_key,endpoint,payload):
 		r = requests.put(endpoint,headers=headers,data=payload)
 	except Exception as e:
 		return str(r)
+
+
+class Misc():
+	
+	def __init__(self,application_key,user_api_key):
+		self.application_key = application_key
+		self.user_api_key = user_api_key
+
+	def get_ph_terms_and_conditions(application_key,user_api_key):
+		endpoint = base_url + '/reference/terms'
+		output = api_call_get_no_auth(endpoint,None)
+		return output
 
 
 '''Publisher Functions'''
@@ -112,6 +143,17 @@ class Advertiser():
 		endpoint = base_url + '/campaign/%s/conversion' % (campaign_id)
 		output = api_call_post(self.application_key,self.user_api_key,endpoint,payload)
 		return output
+
+	def add_publisher_to_campaign(self,payload,campaign_id):
+		endpoint = base_url + '/campaign/%s/publisher' % (campaign_id)
+		output = api_call_post(self.application_key,self.user_api_key,endpoint,payload)
+		return output
+
+	def add_publisher_to_network(self,payload,network_id):
+		endpoint = base_url + '/network/%s/publisher' % (network_id)
+		output = api_call_post(self.application_key,self.user_api_key,endpoint,payload)
+		return output
+
 
 
 '''Creative Functions'''
